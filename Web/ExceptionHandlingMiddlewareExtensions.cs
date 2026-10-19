@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Builder;
 namespace Web;
 
 /// <summary>
-/// Расширение для удобной регистрации Middleware в Program
+/// Расширение для регистрации Middleware
 /// </summary>
 public static class ExceptionHandlingMiddlewareExtensions
 {

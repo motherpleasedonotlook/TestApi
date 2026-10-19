@@ -18,7 +18,7 @@ public sealed class RabbitMqEventPublisher : IEventPublisher
     private readonly IRabbitMqChannelProvider _channelProvider;
     private readonly RabbitMqConfiguration _settings;
     private readonly ILogger<RabbitMqEventPublisher> _logger;
-    private readonly TimeSpan _shutdownTimeout;
+    private readonly int _shutdownTimeout;
 
     private readonly Lock _gate = new();
     private readonly TaskCompletionSource _inflightDrained =
@@ -36,7 +36,7 @@ public sealed class RabbitMqEventPublisher : IEventPublisher
         _channelProvider = channelProvider;
         _settings = settings;
         _logger = logger;
-        _shutdownTimeout = settings.ShutdownTimeout;
+        _shutdownTimeout = settings.ShutdownTimeoutSeconds;
     }
 
     public async Task PublishAsync<T>(T message, CancellationToken cancellationToken)

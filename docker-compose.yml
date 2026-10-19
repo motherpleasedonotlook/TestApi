@@ -45,7 +45,6 @@ services:
       MessageQueuingSettings__Password: ${RABBITMQ_PASSWORD}
       MessageQueuingSettings__Exchange: ${RABBITMQ_EXCHANGE}
       MessageQueuingSettings__RoutingKey: ${RABBITMQ_ROUTING_KEY}
-      MessageQueuingSettings__QueueName: ${RABBITMQ_QUEUE_NAME}
     depends_on:
       db:
         condition: service_healthy

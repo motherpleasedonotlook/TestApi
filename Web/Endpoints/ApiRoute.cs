@@ -1,5 +1,8 @@
 namespace Web.Endpoints;
 
+/// <summary>
+/// Пути api
+/// </summary>
 public static class ApiRoute
 {
     public const string TaskPrefix = "tasks";

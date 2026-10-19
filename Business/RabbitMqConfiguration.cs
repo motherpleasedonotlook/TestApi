@@ -7,10 +7,6 @@ namespace Business;
 /// </summary>
 public sealed class RabbitMqConfiguration
 {
-    
-    [Range(1, int.MaxValue)]
-    private int ShutdownTimeoutSeconds { get; set; } = 5;
-    
     public const string SectionName = "MessageQueuingSettings";
 
     [Required(AllowEmptyStrings = false)]
@@ -30,8 +26,7 @@ public sealed class RabbitMqConfiguration
 
     [Range(1, 65535)]
     public int Port { get; set; } = 5672;
-    
-    public string? QueueName { get; set; }
 
-    public TimeSpan ShutdownTimeout => TimeSpan.FromSeconds(ShutdownTimeoutSeconds);
+    [Range(1, int.MaxValue)]
+    public int ShutdownTimeoutSeconds { get; set; } = 5;
 }

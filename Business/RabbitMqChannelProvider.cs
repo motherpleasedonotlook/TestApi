@@ -11,7 +11,7 @@ public sealed class RabbitMqChannelProvider : IRabbitMqChannelProvider
     private readonly RabbitMqConfiguration _settings;
     private readonly ILogger<RabbitMqChannelProvider> _logger;
     private readonly SemaphoreSlim _connectionLock = new(1, 1);
-    private readonly TimeSpan _shutdownTimeout;
+    private readonly int _shutdownTimeout;
 
     private IConnection? _connection;
     private IChannel? _channel;
@@ -23,7 +23,7 @@ public sealed class RabbitMqChannelProvider : IRabbitMqChannelProvider
     {
         _settings = settings;
         _logger = logger;
-        _shutdownTimeout = settings.ShutdownTimeout;
+        _shutdownTimeout = settings.ShutdownTimeoutSeconds;
     }
 
     public async Task<IChannel> GetChannelAsync(CancellationToken cancellationToken)

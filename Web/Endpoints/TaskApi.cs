@@ -8,13 +8,12 @@ using Web.Contracts.Converters;
 namespace Web.Endpoints;
 
 /// <summary>
-/// Эндпоинты работы с задачами
+/// Эндпоинты для работы с задачами
 /// </summary>
 public static class TaskApi
 {
-    private const string DefaultPriority = "Medium";
     private const int DefaultOffset = 0;
-    private const int DefaultLimit = int.MaxValue;
+    private const int DefaultLimit = 100;
 
     public static void MapEndpoints(this IEndpointRouteBuilder app)
     {
@@ -34,10 +33,6 @@ public static class TaskApi
         ITaskItemService service,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(request.Priority))
-        {
-            request.Priority = DefaultPriority;
-        }
         var created = await service.CreateAsync(request.Title, request.Priority, cancellationToken);
         return Results.Created(ApiRoute.ForTask(created.Id), created);
     }

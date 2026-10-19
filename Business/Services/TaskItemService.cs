@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace Business.Services;
 
 /// <summary>
-/// Сервис работы с задачами
+/// Сервис для работы с задачами
 /// </summary>
 public sealed class TaskItemService : ITaskItemService
 {
