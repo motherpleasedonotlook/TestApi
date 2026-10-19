@@ -9,5 +9,4 @@ public sealed record TaskResponse(
     string Priority,
     bool IsCompleted,
     DateTimeOffset CreatedAt,
-    DateTimeOffset? CompletedAt,
-    uint RowVersion);
+    DateTimeOffset? CompletedAt);

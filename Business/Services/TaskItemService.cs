@@ -59,10 +59,9 @@ public sealed class TaskItemService : ITaskItemService
 
     public async Task<TaskItemModel> CompleteAsync(
         Guid id,
-        uint rowVersion,
         CancellationToken cancellationToken)
     {
-        var completedTask = await _repository.CompleteTaskAsync(id, rowVersion, cancellationToken);
+        var completedTask = await _repository.CompleteTaskAsync(id, cancellationToken);
 
         _logger.LogInformation("Задача {TaskId} завершена", id);
 

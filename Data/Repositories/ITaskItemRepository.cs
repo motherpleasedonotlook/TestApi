@@ -35,6 +35,5 @@ public interface ITaskItemRepository
     /// </summary>
     Task<TaskItem> CompleteTaskAsync(
         Guid id,
-        uint rowVersion,
         CancellationToken cancellationToken = default);
 }

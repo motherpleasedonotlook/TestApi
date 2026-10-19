@@ -28,7 +28,6 @@ public interface ITaskItemService
     /// </summary>
     public Task<TaskItemModel> CompleteAsync(
         Guid id,
-        uint rowVersion,
         CancellationToken cancellationToken = default);
 
     /// <summary>

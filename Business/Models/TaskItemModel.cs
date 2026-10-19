@@ -9,5 +9,4 @@ public sealed record TaskItemModel(
     string Priority,
     bool IsCompleted,
     DateTimeOffset CreatedAt,
-    DateTimeOffset? CompletedAt,
-    uint RowVersion);
+    DateTimeOffset? CompletedAt);

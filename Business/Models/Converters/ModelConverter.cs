@@ -11,6 +11,5 @@ internal static class ModelConverter
             taskItem.Priority.ToString(),
             taskItem.IsCompleted,
             taskItem.CreatedAt,
-            taskItem.CompletedAt,
-            taskItem.RowVersion);
+            taskItem.CompletedAt);
 }

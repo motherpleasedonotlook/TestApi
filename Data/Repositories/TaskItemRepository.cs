@@ -51,7 +51,6 @@ internal sealed class TaskItemRepository : ITaskItemRepository
 
     public async Task<TaskItem> CompleteTaskAsync(
         Guid id,
-        uint rowVersion,
         CancellationToken cancellationToken)
     {
         var task = await GetByIdAsync(id, cancellationToken);
@@ -64,8 +63,6 @@ internal sealed class TaskItemRepository : ITaskItemRepository
         {
             throw new InvalidOperationException($"Задача {id} уже была завершена ранее.");
         }
-
-        _dbContext.Entry(task).Property(x => x.RowVersion).OriginalValue = rowVersion;
 
         task.Complete();
         await _dbContext.SaveChangesAsync(cancellationToken);

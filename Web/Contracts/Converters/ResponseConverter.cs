@@ -11,6 +11,5 @@ internal static class ResponseConverter
             itemModel.Priority,
             itemModel.IsCompleted,
             itemModel.CreatedAt,
-            itemModel.CompletedAt,
-            itemModel.RowVersion);
+            itemModel.CompletedAt);
 }

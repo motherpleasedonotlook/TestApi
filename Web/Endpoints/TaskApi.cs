@@ -66,11 +66,10 @@ public static class TaskApi
     /// </summary>
     private static async Task<IResult> CompleteAsync(
         Guid id,
-        uint rowVersion,
         ITaskItemService service,
         CancellationToken cancellationToken)
     {
-        var result = await service.CompleteAsync(id, rowVersion, cancellationToken);
+        var result = await service.CompleteAsync(id, cancellationToken);
         return Results.Ok(result.ToTaskResponse());
     }
 
