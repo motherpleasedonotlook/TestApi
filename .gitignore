@@ -1,0 +1,30 @@
+# Сборка и артефакты
+**/bin/
+**/obj/
+**/publish/
+**/artifacts/
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.DotSettings
+*.DotSettings.user
+
+# Результаты тестов
+**/TestResults/
+*.trx
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Логи
+*.log
+
+# Секреты и локальные переменные окружения
+.env
+.env.*
+!.env.example
