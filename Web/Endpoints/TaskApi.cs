@@ -14,6 +14,7 @@ public static class TaskApi
 {
     private const int DefaultOffset = 0;
     private const int DefaultLimit = 100;
+    private const string DefaultPriority = "Medium";
 
     public static void MapEndpoints(this IEndpointRouteBuilder app)
     {
@@ -33,7 +34,7 @@ public static class TaskApi
         ITaskItemService service,
         CancellationToken cancellationToken)
     {
-        var created = await service.CreateAsync(request.Title, request.Priority, cancellationToken);
+        var created = await service.CreateAsync(request.Title, request.Priority ?? DefaultPriority, cancellationToken);
         return Results.Created(ApiRoute.ForTask(created.Id), created);
     }
 
