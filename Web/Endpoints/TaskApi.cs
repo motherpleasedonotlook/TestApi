@@ -10,37 +10,36 @@ namespace Web.Endpoints;
 /// <summary>
 /// Эндпоинты работы с задачами
 /// </summary>
-public static class TaskEndpoints
+public static class TaskApi
 {
     private const string DefaultPriority = "Medium";
     private const int DefaultOffset = 0;
-    private const int DefaultLimit = 100;
+    private const int DefaultLimit = int.MaxValue;
 
     public static void MapEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/tasks");
+        var group = app.MapGroup(ApiRoute.TaskPrefix);
 
         group.MapPost("/", CreateAsync);
         group.MapGet("/", GetAllAsync);
-        group.MapPut("/{id:guid}/complete", CompleteAsync);
-        group.MapDelete("/{id:guid}", DeleteAsync);
+        group.MapPut(ApiRoute.TaskComplete, CompleteAsync);
+        group.MapDelete(ApiRoute.Task, DeleteAsync);
     }
 
     /// <summary>
     /// Создать задачу
     /// </summary>
     private static async Task<IResult> CreateAsync(
-        string title,
-        string? priority,
+        CreateTaskItemRequest request,
         ITaskItemService service,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(priority))
+        if (string.IsNullOrWhiteSpace(request.Priority))
         {
-            priority = DefaultPriority;
+            request.Priority = DefaultPriority;
         }
-        var created = await service.CreateAsync(title, priority, cancellationToken);
-        return Results.Created($"/tasks/{created.Id}", created);
+        var created = await service.CreateAsync(request.Title, request.Priority, cancellationToken);
+        return Results.Created(ApiRoute.ForTask(created.Id), created);
     }
 
     /// <summary>

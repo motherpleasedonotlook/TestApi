@@ -60,6 +60,11 @@ internal sealed class TaskItemRepository : ITaskItemRepository
             throw new KeyNotFoundException($"Задача {id} не найдена.");
         }
 
+        if (task.IsCompleted)
+        {
+            throw new InvalidOperationException($"Задача {id} уже была завершена ранее.");
+        }
+
         _dbContext.Entry(task).Property(x => x.RowVersion).OriginalValue = rowVersion;
 
         task.Complete();

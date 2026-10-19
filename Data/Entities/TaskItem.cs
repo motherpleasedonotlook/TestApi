@@ -59,7 +59,7 @@ public sealed class TaskItem
     /// <summary>
     /// Версия строки для оптимистичной блокировки
     /// </summary>
-    public uint RowVersion { get; }
+    public uint RowVersion { get; private set; }
 
     /// <summary>
     /// Завершить задачу

@@ -31,11 +31,6 @@ public sealed class TaskItemService : ITaskItemService
         string priority,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(title) || title.Length > 200)
-        {
-            throw new ArgumentException("Заголовок должен содержать 1-200 символов", nameof(title));
-        }
-
         if (!Enum.TryParse<Priority>(priority, ignoreCase: true, out var parsedPriority))
         {
             throw new ArgumentException("Некорректное значение приоритета", nameof(priority));

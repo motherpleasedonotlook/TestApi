@@ -35,9 +35,11 @@ public sealed class TaskItemDbContext : DbContext
                 .IsRequired(false);
 
             builder.Property(x => x.RowVersion)
-                .IsRowVersion()
+                .HasColumnName("xmin")
                 .HasColumnType("xid")
-                .HasColumnName("xmin");
+                .ValueGeneratedOnAddOrUpdate()
+                .IsConcurrencyToken();
+
         });
     }
 }

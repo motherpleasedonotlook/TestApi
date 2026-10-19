@@ -24,6 +24,7 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 
 builder.Services.AddOpenApi();
+builder.Services.AddProblemDetails();
 
 var app = builder.Build();
 
